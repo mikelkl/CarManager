@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from app import db
+from flask import url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -28,6 +29,17 @@ class MyUser(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "phone_number": self.phone_number,
+            "nick": self.nick,
+            "sex": self.sex,
+            "age": self.age,
+            "member_since": self.member_since,
+            "avatar": self.avatar
+        }
 
     def __repr__(self):
         print '<MyUser: %r>' % self.nick
@@ -58,6 +70,31 @@ class MyCar(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('MyUser.id'))
     peccancys = db.relationship('MyPeccancy', backref='addPeccancy', lazy='dynamic')
 
+    def to_json(self):
+        return {
+            "license_plate_number": self.license_plate_number,
+            "brand": self.brand,
+            "car": self.car,
+            "model": self.model,
+            "engine_number": self.engine_number,
+            "milege": self.milege,
+            "remaining_oil": self.remaining_oil,
+            "engine_statu": self.engine_statu,
+            "antomative_lighting_statu": self.antomative_lighting_statu,
+            "speed_changing_box_statu": self.speed_changing_box_statu,
+            "car_location": self.car_location,
+            "registration_date": self.registration_date,
+            "img": self.img,
+            "price": self.price,
+            "displacement": self.displacement,
+            "oil_consumption": self.oil_consumption,
+            "speed_changing_box": self.speed_changing_box,
+            "car_type": self.car_type,
+            "body_structure": self.body_structure,
+            'user': url_for('api.get_user', id=self.user_id,
+                            _external=True)
+        }
+
     def __repr__(self):
         print '<MyCar: %r>' % self.license_plate_number
 
@@ -71,6 +108,18 @@ class MyRefuelOrder(db.Model):
     refuel_amount = db.Column(db.String(10))
     user_id = db.Column(db.Integer, db.ForeignKey('MyUser.id'))
     gas_station_id = db.Column(db.Integer, db.ForeignKey('MyGasStation.id'))
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "order_time": self.order_time,
+            "refuel_type": self.refuel_type,
+            "refuel_amount": self.refuel_amount,
+            'user': url_for('api.get_user', id=self.user_id,
+                            _external=True),
+            'gas_station': url_for('api.get_gas_station', id=self.gas_station_id,
+                                   _external=True)
+        }
 
     def __repr__(self):
         print '<MyRefuelOrder: %r>' % self.order_time
@@ -86,7 +135,20 @@ class MyPeccancy(db.Model):
     fine = db.Column(db.Integer)
     deduct_point = db.Column(db.Integer)
     query_time = db.Column(db.DateTime())
-    car_id = db.Column(db.Integer, db.ForeignKey('MyCar.license_plate_number'))
+    car_id = db.Column(db.String(30), db.ForeignKey('MyCar.license_plate_number'))
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "peccancy_action": self.peccancy_action,
+            "peccancy_address": self.peccancy_address,
+            "peccancy_time": self.peccancy_time,
+            "fine": self.fine,
+            "deduct_point": self.deduct_point,
+            "query_time": self.query_time,
+            'car': url_for('api.get_car', id=self.car_id,
+                           _external=True)
+        }
 
     def __repr__(self):
         print '<MyPeccancy: %r>' % self.peccancy_time
@@ -111,6 +173,27 @@ class MyGasStation(db.Model):
     fwlsmc = db.Column(db.String(30))
     lat = db.Column(db.Float)
     lon = db.Column(db.Float)
+    orders = db.relationship('MyRefuelOrder', backref='with', lazy='dynamic')
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "area": self.area,
+            "location": self.location,
+            "areaname": self.areaname,
+            "address": self.address,
+            "brandname": self.brandname,
+            "type": self.type,
+            "discount": self.discount,
+            "exhaust": self.exhaust,
+            "position": self.position,
+            "price": self.price,
+            "gastprice": self.gastprice,
+            "fwlsmc": self.fwlsmc,
+            "lat": self.lat,
+            "lon": self.lon
+        }
 
     def __repr__(self):
         print '<MyGasStation: %r>' % self.location
