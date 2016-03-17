@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 import os
 from app import create_app, db
-
+from app.models import MyCar, MyGasStation, MyPeccancy, MyRefuelOrder, MyUser
 from flask.ext.migrate import Migrate, MigrateCommand, upgrade
 from flask.ext.script import Manager, Shell
 
@@ -11,7 +11,9 @@ migrate = Migrate(app, db)
 
 
 def make_shell_context():
-    return dict(app=app, db=db)
+    return dict(app=app, db=db, MyCar=MyCar,
+                MyGasStation=MyGasStation, MyPeccancy=MyPeccancy,
+                MyRefuelOrder=MyRefuelOrder, MyUser=MyUser)
 
 
 manager.add_command('shell', Shell(make_context=make_shell_context))
