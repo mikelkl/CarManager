@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class MyUser(db.Model):
@@ -8,7 +9,7 @@ class MyUser(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     phone_number = db.Column(db.String(20))
-    password = db.Column(db.String(128))
+    password_hash = db.Column(db.String(128))
     nick = db.Column(db.String(64))
     sex = db.Column(db.Boolean)
     age = db.Column(db.String(5))
@@ -16,6 +17,17 @@ class MyUser(db.Model):
     avatar = db.Column(db.String(100))
     cars = db.relationship('MyCar', backref='owner', lazy='dynamic')
     orders = db.relationship('MyRefuelOrder', backref='creator', lazy='dynamic')
+
+    @property
+    def password(self):
+        raise AttributeError('password is not a readble attribute')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         print '<MyUser: %r>' % self.nick
@@ -43,6 +55,7 @@ class MyCar(db.Model):
     speed_changing_box = db.Column(db.String(30))
     car_type = db.Column(db.String(30))
     body_structure = db.Column(db.String(30))
+    user_id = db.Column(db.Integer, db.ForeignKey('MyUser.id'))
     peccancys = db.relationship('MyPeccancy', backref='addPeccancy', lazy='dynamic')
 
     def __repr__(self):
@@ -73,6 +86,7 @@ class MyPeccancy(db.Model):
     fine = db.Column(db.Integer)
     deduct_point = db.Column(db.Integer)
     query_time = db.Column(db.DateTime())
+    car_id = db.Column(db.Integer, db.ForeignKey('MyCar.license_plate_number'))
 
     def __repr__(self):
         print '<MyPeccancy: %r>' % self.peccancy_time
