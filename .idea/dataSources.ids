@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Sqlite (Xerial) - data-dev.sqlite" uuid="a613c92f-ae09-4c5d-903d-e12d3ba36055">
+    <database-info product="SQLite" version="3.8.9" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
+    <table name="MyCar" schema="" catalog="" type="TABLE">
+      <column name="license_plate_number" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="brand" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="car" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="model" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="engine_number" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="milege" sqlType="FLOAT" precision="0" scale="-1" nullable="true" jdbcType="6"/>
+      <column name="remaining_oil" sqlType="FLOAT" precision="0" scale="-1" nullable="true" jdbcType="6"/>
+      <column name="engine_statu" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="antomative_lighting_statu" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="speed_changing_box_statu" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="car_location" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="registration_date" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="img" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="price" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="displacement" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="oil_consumption" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="speed_changing_box" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="car_type" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="body_structure" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="license_plate_number),foreign key(user_id"/>
+      <foreign-key name="#FAKE_MyCar_1" columns="user_id" ref-table="MyUser" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="ix_MyCar_car" unique="true" columns="car"/>
+      <index name="ix_MyCar_brand" unique="true" columns="brand"/>
+    </table>
+    <table name="MyGasStation" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="area" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="areaname" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="brandname" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="discount" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="exhaust" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="position" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="price" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="gastprice" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="fwlsmc" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="lat" sqlType="FLOAT" precision="0" scale="-1" nullable="true" jdbcType="6"/>
+      <column name="lon" sqlType="FLOAT" precision="0" scale="-1" nullable="true" jdbcType="6"/>
+      <primary-key columns="id"/>
+    </table>
+    <table name="MyPeccancy" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="peccancy_action" sqlType="VARCHAR(50)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="peccancy_address" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="peccancy_time" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="fine" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="deduct_point" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="query_time" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="car_id" sqlType="VARCHAR(30)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="id),foreign key(car_id"/>
+      <foreign-key name="#FAKE_MyPeccancy_1" columns="car_id" ref-table="MyCar" ref-schema="" ref-catalog="" ref-columns="license_plate_number" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="MyRefuelOrder" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="order_time" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="refuel_type" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="refuel_amount" sqlType="VARCHAR(10)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="gas_station_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="id),foreign key(gas_station_id"/>
+      <foreign-key name="#FAKE_MyRefuelOrder_1" columns="user_id" ref-table="MyUser" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_MyRefuelOrder_2" columns="gas_station_id" ref-table="MyGasStation" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="MyUser" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="phone_number" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="password_hash" sqlType="VARCHAR(128)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="nick" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="sex" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="age" sqlType="VARCHAR(5)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="member_since" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="avatar" sqlType="VARCHAR(100)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="id),check (sex in (0,1"/>
+    </table>
+    <table name="alembic_version" schema="" catalog="" type="TABLE">
+      <column name="version_num" sqlType="VARCHAR(32)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+    </table>
+  </data-source>
+</component>

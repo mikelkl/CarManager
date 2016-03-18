@@ -9,6 +9,9 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
+    # 配置聚合数据申请的APPKey
+    appkey = "db8d396203c5a372bc8556ecb0d13570"
+
     @staticmethod
     def init_app(app):
         pass
