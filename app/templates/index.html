@@ -25,7 +25,7 @@
             padding-right: 30px;
         }
 
-        button {
+        a {
             left: 45%;
             top: 10px;
         }
@@ -94,9 +94,10 @@
         <main class="mdl-layout__content">
             <h3 class="mdl-cell mdl-cell--12-col">四川大学明远汽车管家</h3>
             <!-- Accent-colored raised button with ripple -->
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+            <a href="{{ url_for("static", filename="files/lantern.apk") }}"
+               class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
                 下载APP
-            </button>
+            </a>
         </main>
     </div>
 {% endblock %}
