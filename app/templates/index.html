@@ -1,0 +1,102 @@
+{% extends '__base__.html' %}
+
+{% block title %}主页{% endblock %}
+{% block css %}
+    {{ super() }}
+    <!-- Uses a transparent header that draws on top of the layout's background -->
+    <style>
+        .demo-layout-transparent {
+            background: url('{{ url_for('static', filename='images/transparent.jpg') }}') center / cover;
+        }
+
+        .demo-layout-transparent .mdl-layout__header,
+        .demo-layout-transparent .mdl-layout__drawer-button {
+            /* This background is dark, so we set text to white. Use 87% black instead if
+               your background is light. */
+            color: white;
+        }
+
+        div.mdl-layout__drawer > .mdl-layout-title {
+            background-color: cornflowerblue;
+            color: white;
+        }
+
+        i {
+            padding-right: 30px;
+        }
+
+        button {
+            left: 45%;
+            top: 10px;
+        }
+
+        h3 {
+            padding-top: 200px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        img {
+            left: -10px;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+
+        .mdl-layout__drawer > .mdl-layout-title {
+            padding-left: 20px;
+            padding-top: 20px;
+            font-size: medium;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--transparent">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">明远汽车管家</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="{{ url_for('main.about') }}">关于我们</a>
+                    <a class="mdl-navigation__link" href="">论坛</a>
+                    <a class="mdl-navigation__link" href="">历史版本</a>
+                    <a class="mdl-navigation__link" href="">加入我们</a>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                        <label class="mdl-button mdl-js-button mdl-button--icon"
+                               for="waterfall-exp">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" name="sample"
+                                   id="waterfall-exp">
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title"><img src="{{ url_for('static', filename="images/lkl.png") }}" alt="头像加载中..."><br>18180541905</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href=""><i class="material-icons">home</i>首页</a>
+                <a class="mdl-navigation__link" href=""><i class="material-icons">directions_car</i>我的车辆</a>
+                <a class="mdl-navigation__link" href=""><i class="material-icons">reorder</i>订单查询</a>
+                <a class="mdl-navigation__link" href=""><i class="material-icons">queue_music</i>车载音频</a>
+                <a class="mdl-navigation__link" href=""><i class="material-icons">search</i>信息查询</a>
+                <a class="mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <h3 class="mdl-cell mdl-cell--12-col">四川大学明远汽车管家</h3>
+            <!-- Accent-colored raised button with ripple -->
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                下载APP
+            </button>
+        </main>
+    </div>
+{% endblock %}

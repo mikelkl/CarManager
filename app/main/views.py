@@ -11,3 +11,8 @@ def index():
 @main.route('/entry')
 def entry():
     return render_template('entry.html')
+
+
+@main.route('/about')
+def about():
+    return render_template('about.html')

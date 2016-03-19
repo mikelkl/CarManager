@@ -1,0 +1,198 @@
+{% extends '__base__.html' %}
+{% block title %}实例文章{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192"
+          href="{{ url_for('static', filename='images/touch/chrome-touch-icon-192x192.png') }}">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage"
+          content="{{ url_for('static', filename='images/touch/ms-touch-icon-144x144-precomposed.png') }}">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+{% endblock %}
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+        <main class="mdl-layout__content">
+            <div class="demo-back">
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="about.html"
+                   title="go back"
+                   role="button">
+                    <i class="material-icons" role="presentation">arrow_back</i>
+                </a>
+            </div>
+            <div class="demo-blog__posts mdl-grid">
+                <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__media mdl-color-text--grey-50">
+                        <h3>我们还在路上</h3>
+                    </div>
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+                        <div class="minilogo"></div>
+                        <div>
+                            <strong>发表日期</strong>
+                            <span>2 天前</span>
+                        </div>
+                        <div class="section-spacer"></div>
+                        <div class="meta__favorites">
+                            425 <i class="material-icons" role="presentation">favorite</i>
+                            <span class="visuallyhidden">favorites</span>
+                        </div>
+                        <div>
+                            <i class="material-icons" role="presentation">bookmark</i>
+                            <span class="visuallyhidden">bookmark</span>
+                        </div>
+                        <div>
+                            <i class="material-icons" role="presentation">share</i>
+                            <span class="visuallyhidden">share</span>
+                        </div>
+                    </div>
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+                        <p>
+                            当今，人们对车的需求和使用越来越多，并伴随着人们的生活节奏的不断加快，人们对自身车的管理也越发强烈。而“互联网+”的提出进一步促进的车与互联网的整合，“车联网”也随之提出与发展，因此，用户对车载移动移动应用的需求也越来越大。
+                        </p>
+                        <p>
+                            本赛题要求参赛选手开发一个车载移动移动应用软件。
+                            要求设计新颖，功能独特，用户体验好，禁止抄袭。
+                            因受于设备的限制，本赛题不要求购买任何车载设备以求达到本赛题目的
+                        </p>
+                        <p>
+                            概要设计说明书（描述软件系统架构、逻辑架构、物理架构、部署结构、功能架构及关键技术、关键业务模块需通过UML图进行详细描述）；程序安装包、源代码；列出使用的第三方包（包括原因，目的，实现的功能）；列出数据获取的来源）、需求规格说明书（包括功能设计、非功能性设计、系统用例）；可制作PPT、视频方式来生动展示.
+                        </p>
+                    </div>
+                    <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+                        <form>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea>
+                                <label for="comment" class="mdl-textfield__label">Join the discussion</label>
+                            </div>
+                            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
+                            </button>
+                        </form>
+                        <div class="comment mdl-color-text--grey-700">
+                            <header class="comment__header">
+                                <img src="{{ url_for('static', filename='images/co1.jpg') }}" class="comment__avatar">
+                                <div class="comment__author">
+                                    <strong>莫绪明</strong>
+                                    <span>2 天前</span>
+                                </div>
+                            </header>
+                            <div class="comment__text">
+                                超棒的用户体验！
+                            </div>
+                            <nav class="comment__actions">
+                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                    <i class="material-icons" role="presentation">thumb_up</i><span
+                                        class="visuallyhidden">like comment</span>
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                    <i class="material-icons" role="presentation">thumb_down</i><span
+                                        class="visuallyhidden">dislike comment</span>
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                    <i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>
+                                </button>
+                            </nav>
+                            <div class="comment__answers">
+                                <div class="comment">
+                                    <header class="comment__header">
+                                        <img src="{{ url_for('static', filename='images/co2.jpg') }}"
+                                             class="comment__avatar">
+                                        <div class="comment__author">
+                                            <strong>刘康龙</strong>
+                                            <span>2 天前</span>
+                                        </div>
+                                    </header>
+                                    <div class="comment__text">
+                                        谢谢支持！
+                                    </div>
+                                    <nav class="comment__actions">
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">thumb_up</i><span
+                                                class="visuallyhidden">like comment</span>
+                                        </button>
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">thumb_down</i><span
+                                                class="visuallyhidden">dislike comment</span>
+                                        </button>
+                                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                            <i class="material-icons" role="presentation">share</i><span
+                                                class="visuallyhidden">share comment</span>
+                                        </button>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+                    <a href="about.html" class="demo-nav__button">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
+                                role="presentation">
+                            <i class="material-icons">arrow_back</i>
+                        </button>
+                        新的帖子
+                    </a>
+                    <div class="section-spacer"></div>
+                    <a href="about.html" class="demo-nav__button">
+                        旧的帖子
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
+                                role="presentation">
+                            <i class="material-icons">arrow_forward</i>
+                        </button>
+                    </a>
+                </nav>
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer--left-section">
+                    <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter">
+                        <span class="visuallyhidden">Twitter</span>
+                    </button>
+                    <button class="mdl-mini-footer--social-btn social-btn social-btn__blogger">
+                        <span class="visuallyhidden">Facebook</span>
+                    </button>
+                    <button class="mdl-mini-footer--social-btn social-btn social-btn__gplus">
+                        <span class="visuallyhidden">Google Plus</span>
+                    </button>
+                </div>
+                <div class="mdl-mini-footer--right-section">
+                    <button class="mdl-mini-footer--social-btn social-btn__share">
+                        <i class="material-icons" role="presentation">share</i>
+                        <span class="visuallyhidden">share</span>
+                    </button>
+                </div>
+            </footer>
+        </main>
+        <div class="mdl-layout__obfuscator"></div>
+    </div>
+    <a href="{{ url_for('main.about') }}" target="_blank" id="view-source"
+       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--white">关于我们</a>
+{% endblock %}
