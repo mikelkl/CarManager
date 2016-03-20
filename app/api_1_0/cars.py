@@ -3,7 +3,7 @@ from app.models import MyCar
 from flask import jsonify
 
 
-@api.route('/car/id')
+@api.route('/car/<id>')
 def get_car(id):
     car = MyCar.query.get_or_404(id)
     return jsonify(car.to_json())
